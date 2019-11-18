@@ -246,7 +246,6 @@ if __name__ == "__main__":
             except AttributeError:
                 # some service users etc. might not have an email
                 pass
-
         quota_list = build_quota_table(old_quotas, project['quotas'])
         msg = TemplateMessage(email=project['email'],
                               fullname=project['user_fullname'],

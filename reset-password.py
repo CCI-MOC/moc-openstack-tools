@@ -90,7 +90,9 @@ if __name__ == "__main__":
     setpass = SetpassClient(sess, setpass_url)
     keystone = client.Client(session=sess)
   
-    user = [usr for usr in keystone.users.list() if usr.name == args.username]
+    #user = [usr for usr in keystone.users.list()
+    user = [usr for usr in keystone.users.list(domain='default')
+            if usr.name.lower() == args.username.lower()]
     if not user:
         print "User {} not found".format(args.username)
         sys.exit(1)

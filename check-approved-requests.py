@@ -104,9 +104,11 @@ def parse_quota_row(cells):
               'cores': cells[12],
               'ram': cells[13],
               'floatingip': cells[14],
-              'volumes': cells[15],
-              'snapshots': cells[16],
-              'gigabytes': cells[17]}
+              'network': cells[15],
+              'port': cells[16],
+              'volumes': cells[17],
+              'snapshots': cells[18],
+              'gigabytes': cells[19]}
     unchanged_quotas = [q for q in quotas if quotas[q] == '']
     for quota_name in unchanged_quotas:
             del quotas[quota_name]

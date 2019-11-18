@@ -3,7 +3,7 @@ Hi <FULLNAME>,
 The new OpenStack project `<PROJECT>` has been created for you on MOC Production (Kaizen).  You can log in at:
 <LOGIN_URL>.  
 
-If you also requested a new user account, you will receive the details in a separate email.
+If you also requested a new user account, you will receive the details in a separate email. This would be a LOCAL KEYSTONE ACCOUNT.
 
 Make sure to review the following page outlining our terms, expectations, and default project quotas.  Please pay particular attention to the security expectations.  Note that any VM that appears to be compromised will be shut down without warning. 
 <TERMS_URL>
@@ -17,7 +17,7 @@ We also suggest you take the following steps to prevent lost data / wasted work:
 More information on getting started with OpenStack can be found here:
 <GETTING_STARTED_URL>
 
-If you have any questions, or if you encounter any issues with your account or project, please send an email to:
+If you have any questions, or if you encounter any issues with your account or project, please log a ticket at:
 <SUPPORT_EMAIL>
 
 Thanks,

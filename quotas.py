@@ -74,10 +74,16 @@ class QuotaManager:
         add_port_count = 0
 
         if ('network') in kwargs:
-            # Increase port quota by 2 for each new network to allow for
-            # one DHCP port and one router interface
-            added_networks = kwargs['network'] - current_quotas['network']
-            add_port_count = added_networks * 2
+	    # Increase port quota for each new network to allow for
+            # two DHCP ports and one router interface.
+            # Multiply by VM count and add 5 in the end for padding.
+
+	    added_networks = kwargs['network'] - current_quotas['network']
+            if ('instances' in kwargs):
+                current_vms = current_quotas['instances']
+                add_port_count = (current_vms * added_networks) + 5
+            else:
+                add_port_count = (added_networks) + 5
         
         if ('instances' in kwargs):
             # Get a count of existing ports not used by instances
@@ -85,9 +91,9 @@ class QuotaManager:
             non_compute_ports_used = len([p for p in port_list if
                                           p['device_owner'] != 'compute:nova'])
             
-            # Check whether we will have at least 1 port per instance
-            # TODO: do we want to add some 'padding' ports here?
+            # Check whether we will have at least 1 + padding ports per instance
             min_ports_needed = kwargs['instances'] + non_compute_ports_used
+	    min_ports_needed = (min_ports_needed) + 5
             if (current_quotas['port']) < min_ports_needed:
                 quota_gap = min_ports_needed - current_quotas['port']
                 add_port_count += quota_gap
